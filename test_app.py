@@ -8,8 +8,8 @@ def test_home():
     response = client.get("/")
 
     assert response.status_code == 200
-    # assert response.json()["message"] == "Hello CI/CD!"
-    assert response.json()["message"] == "我是错误内容"
+    assert response.json()["message"] == "Hello CI/CD!"
+    # assert response.json()["message"] == "我是错误内容"
 
 
 def test_hello():
