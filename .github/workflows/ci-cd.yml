@@ -1,6 +1,6 @@
+
 name: Python CI/CD Demo
 
-# 监听代码提交和 PR
 on:
   push:
     branches: [main]
@@ -8,35 +8,33 @@ on:
   pull_request:
     branches: [main]
 
-# 工作流需要的权限
 permissions:
   contents: read
 
 jobs:
-
-  # 第一个任务：自动测试
   test:
     name: Run Python Tests
-
     runs-on: ubuntu-latest
 
     steps:
-      # 第一步：下载代码
+      # 1. 下载代码
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 第二步：安装 Python
+      # 2. 安装 Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 第三步：安装依赖
+      # 3. 安装依赖
       - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
-      # 第四步：执行测试
+      # 4. Ruff 代码质量检查
+      - name: Run Ruff
+        run: ruff check .
+
+      # 5. Pytest 自动化测试
       - name: Run Tests
-        run: |
-          pytest -v
+        run: pytest -v
