@@ -1,9 +1,8 @@
-import pytest
-import os
 from fastapi.testclient import TestClient
-
 from app import app
 
+# 创建测试客户端
+# 代码修改了
 client = TestClient(app)
 
 
